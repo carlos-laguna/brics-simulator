@@ -1,0 +1,23 @@
+[project]
+name = "brics"
+description = "An open-source platform for construction robotics simulation, with physics-based environments and BIM integration."
+readme = "README.md"
+version = "0.1.0"
+authors = [
+    { name = "Carlos Laguna Sanchez", email = "c.laguna.sanchez@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.13.4,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+docs = [
+    "mkdocs>=1.6.1",
+]
