@@ -1,0 +1,26 @@
+# Version control and CI/CD
+.git
+.gitignore
+.github
+
+# Python virtual environments and cache
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# Sensitive environment and credentials
+.env
+
+# Build and distribution artifacts
+dist/
+build/
+*.egg-info/
+
+# IDE and OS files
+.vscode
+
+# Documentation
+docs/
