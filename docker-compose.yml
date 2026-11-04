@@ -3,10 +3,5 @@ services:
     build:
       context: .
       dockerfile: docker/sim/mujoco/Dockerfile
-    image: sim-mujoco
-    container_name: brics-sim-mujoco
-    restart: unless-stopped
-    volumes:
-      - ./outputs:/app/outputs
-    environment:
-      - PYTHONBUFFERED=1
+    image: brics-mujoco:dev
+    
