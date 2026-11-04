@@ -21,3 +21,6 @@ dev = [
 docs = [
     "mkdocs>=1.6.1",
 ]
+sim = [
+    "mujoco>=3.17.0",
+]
