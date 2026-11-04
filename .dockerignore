@@ -1,26 +1,35 @@
-# Version control and CI/CD
+# Version control, CI, and editor configuration
 .git
 .gitignore
 .github
-
-# Python virtual environments and cache
-.venv/
-__pycache__/
-*.pyc
-*.pyo
-.pytest_cache/
-.ruff_cache/
-
-# Sensitive environment and credentials
-.env
-
-# Build and distribution artifacts
-dist/
-build/
-*.egg-info/
-
-# IDE and OS files
 .vscode
 
-# Documentation
+# Python environments and caches at any depth
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+
+# Coverage reports
+**/.coverage
+**/.coverage.*
+**/htmlcov/
+**/coverage.xml
+
+# Local environment files
+**/.env
+**/.env.*
+
+# Build and distribution artifacts
+build/
+dist/
+**/*.egg-info/
+
+# Documentation is not needed in the physics development image
 docs/
+site/
+
+# Generated experiment results
+outputs/
