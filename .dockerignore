@@ -1,0 +1,35 @@
+# Version control, CI, and editor configuration
+.git
+.gitignore
+.github
+.vscode
+
+# Python environments and caches at any depth
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+
+# Coverage reports
+**/.coverage
+**/.coverage.*
+**/htmlcov/
+**/coverage.xml
+
+# Local environment files
+**/.env
+**/.env.*
+
+# Build and distribution artifacts
+build/
+dist/
+**/*.egg-info/
+
+# Documentation is not needed in the physics development image
+docs/
+site/
+
+# Generated experiment results
+outputs/
