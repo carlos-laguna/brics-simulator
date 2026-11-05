@@ -1,0 +1,23 @@
+site_name: BRICS
+site_description: Construction robotics simulation scope and architecture
+docs_dir: docs
+site_dir: site
+site_url: https://carlos-laguna.github.io/brics-simulator/
+repo_url: https://github.com/carlos-laguna/brics-simulator
+edit_uri: edit/main/docs/
+theme:
+  name: mkdocs
+nav:
+  - Overview: index.md
+  - Project scope: project-scope.md
+  - Architecture: architecture.md
+  - Validation and limitations: validation.md
+  - Platform roadmap: roadmap.md
+  - Decisions:
+      - Register: adr/README.md
+      - MuJoCo and portability: adr/001-mujoco-and-bounded-backend-portability.md
+      - Physics authority: adr/002-single-physics-authority.md
+      - Rendering and middleware: adr/003-optional-rendering-and-middleware.md
+      - Python application layer: adr/004-python-application-layer.md
+      - Template: adr/template.md
+  - References: references.md
