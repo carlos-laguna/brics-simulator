@@ -1,0 +1,23 @@
+digraph BRICS {
+  graph [rankdir=TB, bgcolor="white", pad="0.30", nodesep="0.50", ranksep="0.72", fontname="Arial", label="Proposed component boundaries", labelloc=t, fontsize=22, fontcolor="#102d45"];
+  node [shape=box, style="rounded,filled", fillcolor="#edf3f8", color="#9caebf", fontname="Arial", fontsize=13, margin="0.18,0.14", fontcolor="#102d45"];
+  edge [fontname="Arial", fontsize=11, color="#586d7c", fontcolor="#435664", arrowsize=0.8];
+  scenario [label="Scenario and experiment\nconfiguration"];
+  policy [label="External controller\nor learning system", style="rounded,filled,dashed", fillcolor="#fff3d6", color="#bc9447"];
+  runner [label="Episode runner\nSole authority to request steps", fillcolor="#d4eee8", color="#147564", penwidth=1.6];
+  physics [label="One physics backend\nOwns all coupled dynamics", fillcolor="#d4eee8", color="#147564", penwidth=1.6];
+  sensors [label="Observation pipeline\nSampling, delay and delivery"];
+  renderer [label="Optional Unreal renderer\nVisual state and sensors", style="rounded,filled,dashed", fillcolor="#f5f4f9", color="#8b84a5"];
+  evaluation [label="Evaluation and recording\nPrivileged truth and run records"];
+  scenario -> runner;
+  policy -> runner [label="Commands"];
+  runner -> physics [dir=both, label="Step requests / results"];
+  runner -> sensors [label="Timestamped state"];
+  runner -> renderer [label="Scene snapshots"];
+  renderer -> sensors [label="Captured observations"];
+  sensors -> policy [label="Available observations", constraint=false];
+  runner -> evaluation [label="Truth and events"];
+  policy -> evaluation [label="Actions and predictions", constraint=false];
+  {rank=same; scenario; policy;}
+  {rank=same; physics; renderer; evaluation;}
+}

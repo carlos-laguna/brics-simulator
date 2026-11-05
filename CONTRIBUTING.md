@@ -105,12 +105,62 @@ Record significant technical decisions in `docs/adr/`, using the
 [ADR template](docs/adr/template.md). Routine implementation details
 do not need an ADR.
 
-Name records `NNN-short-title.md`, starting with `001`. New records begin
+Use the [ADR register](docs/adr/README.md) to find related proposals before
+adding a new one. Significant changes to physics ownership, required runtimes,
+backend portability promises or research language belong in an ADR. Keep
+branch names, formatting conventions and ordinary tooling instructions here.
+
+Name records `NNN-short-title.md`, using the next unused number from `001`.
+Never reuse or overwrite an existing numbered record. New records begin
 as **Proposed** and are discussed with the team before becoming **Accepted**.
 Proposals may also be **Rejected** or **Deferred**.
 
 When an accepted decision is replaced, preserve it as **Superseded** and link
 to the new record. Link relevant ADRs from implementation pull requests.
+
+Accepting a proposal records agreement; it does not mean the capability has
+been implemented. Update the [architecture guide](docs/architecture.md) when
+an agreed design changes, and update the README's capability status only when
+the corresponding implementation and checks exist.
+
+## Documentation
+
+The README explains project status and setup. Detailed research scope,
+architecture and limitations belong in `docs/`. ADRs explain why significant
+directions were chosen; avoid copying entire design guides into each record.
+
+For a new physical model or supported scenario, document:
+
+- Model assumptions, operating range, missing mechanisms and parameter sources.
+- Units, frames, command semantics, observation access and simulation timing.
+- Reference cases, tolerance rationale and relevant numerical sensitivity.
+- Metrics, success/failure definitions and any uncalibrated quantities.
+- Asset provenance, modifications and redistribution conditions.
+
+Label future work as planned. Document a deliberate approximation explicitly;
+do not imply that a capability exists because an upstream engine supports it.
+
+Install the `docs` group as described in the README, then run:
+
+```bash
+uv run --locked --group docs mkdocs build --strict
+```
+
+Preview substantive edits with `uv run --locked --group docs mkdocs serve`.
+Check links, tables and diagrams. Keep generated `site/` output untracked.
+The site displays committed SVG diagrams; their editable Graphviz source is
+stored beside them. Diagram editing instructions are in the architecture guide.
+
+## Research comparisons
+
+Follow the [validation and evaluation policy](docs/validation.md). Keep a clear
+separation between policy observations, privileged training targets and evaluator
+truth. Compare methods under declared observation and action authority, with
+explicit train/validation/test splits and scenario provenance.
+
+Record numerical failures and unsuccessful episodes. Do not present simulated
+improvements as demonstrated real-world safety. Distinguish reproduction of
+SwingRL from extensions to its task, model or available actions.
 
 ## External assets and data
 

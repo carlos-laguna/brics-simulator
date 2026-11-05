@@ -24,17 +24,20 @@ jobs:
       - name: Install Python
         run: uv python install 3.12
 
-      - name: Install project and development dependencies
-        run: uv sync --locked --python 3.12 --group dev
-
-      - name: Check linting
-        run: uv run --locked ruff check .
+      - name: Install project and check dependencies
+        run: uv sync --locked --python 3.12 --group dev --group docs
 
       - name: Check formatting
-        run: uv run --locked ruff format --check .
+        run: uv run --no-sync ruff format --check .
+
+      - name: Check linting
+        run: uv run --no-sync ruff check .
 
       - name: Check package import
-        run: uv run --locked python -c "import brics; print(brics.__file__)"
+        run: uv run --no-sync python -c "import brics; print(brics.__file__)"
+
+      - name: Build documentation
+        run: uv run --no-sync mkdocs build --strict
 
       - name: Build package
         run: uv build

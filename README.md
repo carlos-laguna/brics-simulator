@@ -2,11 +2,13 @@
 
 **Building Robotics Intelligence & Construction Simulator**
 
-An open-source project for construction robotics simulation.
+An open-source construction robotics simulation project, initially focused on
+reusable simulation of suspended-load handling and placement.
 
 > **Status:** Initial development. The development environment supports importing
-> BRICS and MuJoCo locally or in Docker. BRICS simulation scenarios and BIM
-> integration are not yet implemented.
+> BRICS and MuJoCo locally or in Docker. The first reference simulation is next.
+> The benchmark, physics adapter interfaces, Unreal and ROS integrations, and BIM
+> import described in the documentation are planned, not implemented features.
 
 ## Vision
 
@@ -17,7 +19,43 @@ The platform will build on existing simulation technologies and add
 construction-specific assets, scenarios, physical models and evaluation tools.
 The goal is to connect industry data with reproducible robotics experiments.
 
-## Planned capabilities
+## First reference use case
+
+The initial use case is suspended-load handling and placement under wind
+disturbances and imperfect sensing. The group's physical rig and SwingRL task
+provide initial requirements and candidate assets. BRICS aims to provide
+reusable scenarios, observations and measurements for different controllers
+and learning systems.
+
+Research projects can guide requirements and contribute reusable capabilities.
+Their hypotheses, model architectures and study results are maintained
+separately. BRICS does not depend on any individual thesis or trained model.
+
+See [project scope](docs/project-scope.md) for the initial operating scope,
+deferred capabilities and the boundary between platform and research work.
+
+## Intended architecture
+
+- **MuJoCo first:** develop a small, verified physics example before a complete
+  suspended-load task.
+- **Bounded backend independence:** keep experiment, command, observation and
+  evaluation meanings separate from native engine objects. Preserve explicit
+  backend-specific models and solver settings.
+- **One physics authority:** one backend owns the interacting world for each
+  episode; one runner coordinates all requests to advance simulation time.
+- **Optional integrations:** Unreal Engine 5 may supply rendering and sensors;
+  ROS 2 may connect robotics systems. Neither owns physics or is required for
+  headless reference experiments.
+- **Python application layer:** use Python with native simulation libraries, adding
+  lower-level components only for a demonstrated need.
+
+This is the proposed direction, not a promise that arbitrary backends or scenes
+can be interchanged. Team decisions remain recorded as **Proposed** until review.
+Read the [architecture guide](docs/architecture.md),
+[validation and limitations](docs/validation.md) and
+[ADR register](docs/adr/README.md).
+
+## Longer-term vision
 
 - **Construction tasks:** Scenarios for component handling, assembly, lifting
   and earthmoving.
@@ -31,7 +69,10 @@ The goal is to connect industry data with reproducible robotics experiments.
 - **Extensibility:** Modular components that allow new tasks, assets and simulation
   integrations to be added.
 
-These are development goals, not currently supported features.
+These are longer-term development goals, not currently supported features or
+commitments for the first platform milestone. In particular, excavation, broad
+BIM/point-cloud ingestion, arbitrary crane mechanisms and multiple interacting
+physics engines are outside the immediate scope.
 
 ## Development principles
 
@@ -161,6 +202,36 @@ development and simulation dependencies:
 ```bash
 uv sync --locked --python 3.12 --group dev --group sim --group docs
 ```
+
+Build or preview the documentation:
+
+```bash
+uv run --locked --group docs mkdocs build --strict
+uv run --locked --group docs mkdocs serve
+```
+
+The site uses static SVG diagrams and the standard MkDocs theme. No rendering
+engine, GPU, additional documentation plugin or external diagram service is
+required. Generated `site/` output should remain untracked.
+
+The current Docker image excludes `docs/` and does not install the `docs`
+dependency group; use the native workflow for the documentation build.
+
+## Documentation and next steps
+
+- [Documentation overview](docs/index.md)
+- [Project scope](docs/project-scope.md)
+- [Architecture](docs/architecture.md)
+- [Validation and limitations](docs/validation.md)
+- [Platform roadmap](docs/roadmap.md)
+- [Architecture decision records](docs/adr/README.md)
+- [References](docs/references.md)
+
+The next task is a headless free-fall experiment with analytic checks, an
+installed CLI and container execution. It deliberately has no suspension,
+contact, renderer or robotics middleware. The `sim` group is planned to become
+an installation extra when this functionality is implemented; the commands
+above describe the current dependency layout.
 
 ## Contributing
 

@@ -1,0 +1,20 @@
+digraph Timing {
+  graph [rankdir=TB, bgcolor="white", pad="0.28", nodesep="0.45", ranksep="0.47", fontname="Arial", label="Proposed control interval", labelloc=t, fontsize=22, fontcolor="#102d45"];
+  node [shape=box, style="rounded,filled", fillcolor="#edf3f8", color="#9caebf", fontname="Arial", fontsize=13, margin="0.17,0.12", fontcolor="#102d45"];
+  edge [fontname="Arial", fontsize=11, color="#586d7c", fontcolor="#435664", arrowsize=0.8];
+  reset [label="Reset episode\nCapture initial sample; honour delay", style="rounded,filled,dashed"];
+  release [label="At control tick\nDeliver due observations to policy"];
+  command [label="Policy proposes command\nRunner validates and schedules it"];
+  step [label="Apply scheduled inputs\nBackend advances one fixed step", fillcolor="#d4eee8", color="#147564", penwidth=1.6];
+  record [label="Extract endpoint state and interval data\nRecord with their own time semantics"];
+  capture [label="Capture sensor channels due at this tick\nQueue outputs with declared delivery times"];
+  boundary [shape=diamond, label="Next control tick?", style=filled, fillcolor="#fff3d6", color="#bc9447", margin="0.12,0.08"];
+  reset -> release [label="Declared startup policy"];
+  release -> command;
+  command -> step;
+  step -> record;
+  record -> capture;
+  capture -> boundary;
+  boundary -> step [label="No", constraint=false];
+  boundary -> release [label="Yes", constraint=false];
+}
