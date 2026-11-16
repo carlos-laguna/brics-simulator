@@ -2,6 +2,8 @@
 name = "brics"
 description = "An open-source platform for construction robotics simulation, with physics-based environments and BIM integration."
 readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 version = "0.1.0"
 authors = [
     { name = "Carlos Laguna Sanchez", email = "c.laguna.sanchez@gmail.com" }

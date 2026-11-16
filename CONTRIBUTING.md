@@ -162,11 +162,12 @@ Record numerical failures and unsuccessful episodes. Do not present simulated
 improvements as demonstrated real-world safety. Distinguish reproduction of
 SwingRL from extensions to its task, model or available actions.
 
-## External assets and data
+## Contribution rights and external material
 
-For models, datasets, textures or other external assets, document their source,
-licence and any modifications. Check that redistribution is permitted before
-adding assets to the repository.
+You must have the right to submit your work. Original contributions are submitted
+under Apache-2.0. For third-party material, identify its source, applicable licence,
+required notices and any modifications, and ensure that its terms permit the
+intended use and redistribution.
 
 Keep original source assets distinguishable from derived simulation assets,
 and document relevant unit and coordinate-system conversions.
