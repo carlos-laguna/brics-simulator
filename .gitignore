@@ -29,3 +29,6 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Aux folder
+/.local/
