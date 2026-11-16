@@ -5,6 +5,9 @@
 An open-source construction robotics simulation project, initially focused on
 reusable simulation of suspended-load handling and placement.
 
+BRICS was initiated by Carlos Laguna Sanchez during his MPhil research at the University
+of Cambridge.
+
 > **Status:** Initial development. The development environment supports importing
 > BRICS and MuJoCo locally or in Docker. The first reference simulation is next.
 > The benchmark, physics adapter interfaces, Unreal and ROS integrations, and BIM
@@ -243,5 +246,11 @@ The project is at an early stage, and its interfaces may change substantially.
 Before starting a substantial change, open an issue describing the problem,
 proposed approach and expected behaviour.
 
-Contributions involving external models, datasets or other assets should
-include their source and licensing information.
+## Licence
+
+Original BRICS code and documentation use [Apache License 2.0](LICENSE)
+(`Apache-2.0`). Third-party software and assets retain their respective licences.
+Optional integrations may require separately licensed software, accounts or fees.
+BRICS's licence does not grant rights to that third-party material.
+The documentation site's [licence bundle](docs/assets/licenses.txt) accompanies
+its generated assets.
