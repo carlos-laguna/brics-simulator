@@ -1,6 +1,6 @@
 # 001: Start with MuJoCo and bounded backend portability
 
-- **Status:** Proposed
+- **Status:** Rejected on 19/11/2026. See [ADR 005](005-isaac-lab-and-newton.md) for the decision and supporting evidence.
 - **Date:** 05-11-2026
 
 ## Context
