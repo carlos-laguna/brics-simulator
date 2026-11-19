@@ -102,6 +102,13 @@ The simulator integration is planned. The first GPU milestone will establish
 a tested kit-less environment and record the compatible driver, Python,
 Isaac Lab and Newton versions.
 
+For local GPU work, use NVIDIA's kit-less Isaac Lab container. Each lab obtains the
+image directly from NVIDIA and mounts its BRICS checkout and results directory.
+The BRICS development image serves the CPU package checks. When the first GPU task
+passes, document its launch command and the upstream image digest alongside it.
+See [NVIDIA's container setup](https://docs.nvidia.com/isaaclab/3.0/isaac-lab/installation)
+and the [Isaac Sim licence FAQ](https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html).
+
 ## Documentation and next steps
 
 - [Documentation overview](docs/index.md)

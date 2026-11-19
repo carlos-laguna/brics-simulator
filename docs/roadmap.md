@@ -8,7 +8,7 @@
 | Milestone | Deliverable | Completion evidence |
 |---|---|---|
 | Development environment | Importable package and kit-less Isaac Lab GPU setup | Package import check, followed by a planned Newton GPU smoke test |
-| Free-fall reference example | Small Python API and installed CLI | Analytic checks, timestep convergence and clean package/container execution |
+| Free-fall reference example | Small Python API and installed CLI | Analytic checks, timestep convergence and installed CLI execution in the kit-less GPU environment |
 | Suspended-load reference scene | Documented payload, suspension and commands | Equilibrium and swing reference cases; explicit units and frames |
 | Disturbance and contact cases | Prescribed wind, landing and fixture interaction | Correct forces/moments, contact records and numerical sensitivity studies |
 | Reusable placement scenario | Configurable placement task with observation and metric contracts | Documented assumptions, reset behaviour and successful/unsuccessful reference cases |
