@@ -25,7 +25,8 @@ establishing the applicable permissions.
 
 ## Platform selection
 
-The [decision brief](adr/platform-decision-brief.md) links the Isaac Lab, Newton and Isaac Sim sources alongside the alternatives reviewed.
+The [decision brief](adr/platform-decision-brief.md) links the Isaac Lab, Newton and
+Isaac Sim sources alongside the alternatives reviewed.
 
 ## MuJoCo
 

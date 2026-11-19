@@ -4,7 +4,8 @@ BRICS means **Building Robotics Intelligence & Construction Simulator**.
 It is an open-source construction robotics project, currently focused on
 simulation of suspended-load handling and placement.
 
-> **Implementation status:** BRICS has an importable Python package. The first planned task is a headless free-fall check in Isaac Lab with Newton.
+> **Implementation status:** BRICS has an importable Python package. The first planned
+> task is a headless free-fall check in Isaac Lab with Newton.
 
 ## Read in this order
 

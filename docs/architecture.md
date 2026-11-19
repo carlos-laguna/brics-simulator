@@ -3,7 +3,8 @@
 > **Status: proposed design.** This document describes the intended boundaries of
 > BRICS. It does not imply that these components, interfaces or integrations are
 > implemented. The first planned simulation example is small, headless and based
-> on Isaac Lab with Newton. [ADR 005](adr/005-isaac-lab-and-newton.md) records the platform choice.
+> on Isaac Lab with Newton. [ADR 005](adr/005-isaac-lab-and-newton.md) records the
+> platform choice.
 
 ## Design objective
 
@@ -17,11 +18,13 @@ independence is useful where it protects those experiments. It does not mean tha
 every physical model can run unchanged in every simulator, or that equivalent
 parameter names produce equivalent dynamics.
 
-Python is the proposed application language. Isaac Lab runs the task and Newton integrates its dynamics.
+Python is the proposed application language. Isaac Lab runs the task and Newton
+integrates its dynamics.
 
 ## Component boundaries
 
-![Planned component boundaries: the episode runner coordinates one physics backend, observations, rendering and evaluation.](assets/architecture-components.svg)
+![Planned component boundaries: the episode runner coordinates one physics backend,
+observations, rendering and evaluation.](assets/architecture-components.svg)
 
 [Open full-size diagram](assets/architecture-components.svg).
 
@@ -163,7 +166,8 @@ the scheduling order.
 Use a step index as well as simulation timestamps. Check returned backend time
 against the expected timeline rather than allowing independent clocks to drift.
 
-![Planned control interval: deliver observations, schedule a command, step physics, record and capture; repeat until the next control tick.](assets/architecture-timing.svg)
+![Planned control interval: deliver observations, schedule a command, step physics,
+record and capture; repeat until the next control tick.](assets/architecture-timing.svg)
 
 [Open full-size diagram](assets/architecture-timing.svg).
 
@@ -222,16 +226,21 @@ justifies their backend-specific requirements.
 
 ## Cameras and rendering
 
-Start with kit-less Newton Warp cameras. A task that needs RTX images can evaluate OVRTX under its separate terms. Record camera calibration, axes, frame timestamps and the relation between collision and visual geometry. Check observation age before closing a control loop around images.
+Start with kit-less Newton Warp cameras. A task that needs RTX images can evaluate OVRTX
+under its separate terms. Record camera calibration, axes, frame timestamps and the
+relation between collision and visual geometry. Check observation age before closing a
+control loop around images.
 
 ## ROS 2 and other integrations
 
-The core experiment should run through direct Python calls. The optional Isaac Sim ROS 2 bridge
+The core experiment should run through direct Python calls. The optional Isaac Sim ROS 2
+bridge
 can translate commands and observations, publish transforms and simulated time,
 and expose reset/episode information. ROS callbacks enqueue requests; they never
 advance physics themselves.
 
-ROS 2's [`/clock` and `use_sim_time`](https://design.ros2.org/articles/clock_and_time.html)
+ROS 2's
+[`/clock` and `use_sim_time`](https://design.ros2.org/articles/clock_and_time.html)
 support a shared simulation-time reference. They do not establish a barrier
 ensuring that every controller has finished a step. A synchronous experiment
 needs an explicit scheduler or acknowledgement protocol, plus policies for stale,

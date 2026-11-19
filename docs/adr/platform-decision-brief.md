@@ -1,8 +1,22 @@
 # Choosing a platform stack for our simulator
 
-**19/11/2026** · Supporting evidence for [ADR 005](005-isaac-lab-and-newton.md). Versions, capabilities and terms below are those reviewed for this decision.
+**19/11/2026** · Supporting evidence for [ADR 005](005-isaac-lab-and-newton.md).
+Versions, capabilities and terms below are those reviewed for this decision.
 
-Recommendation: start with a minimum implementation on Isaac Lab 3.0 with Newton physics; add full Isaac Sim when a task needs features such as RTX LiDAR or ROS 2. It combines [robot controls, sensors and training](<https://isaac-sim.github.io/IsaacLab/v3.0.0/source/isaaclab/ecosystem.html>) in one platform, with [no software licence fee for internal research](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html>). We can publish our code and assets we have permission to share. Users must install Isaac themselves, including Isaac Sim for sensor tasks. Shipping full Isaac Sim with Omniverse Kit (NVIDIA’s runtime), or hosting it for outside users, requires a paid enterprise licence. Isaac Lab 3.0 ([released October 2026](<https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0>)) runs most workflows without Isaac Sim (“kit-less”). For physics, Isaac Lab offers [PhysX or Newton](<https://docs.nvidia.com/isaaclab/3.0/isaac-lab/ecosystem>). Newton includes MJWarp, a GPU version of MuJoCo, and solvers for deformable materials. Warp is a programming library, not a third physics engine.
+Recommendation: start with a minimum implementation on Isaac Lab 3.0 with Newton
+physics; add full Isaac Sim when a task needs features such as RTX LiDAR or ROS 2. It
+combines
+[robot controls, sensors and training](<https://isaac-sim.github.io/IsaacLab/v3.0.0/source/isaaclab/ecosystem.html>)
+in one platform, with
+[no software licence fee for internal research](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html>). We can publish our code and assets we have permission to share. Users must install
+Isaac themselves, including Isaac Sim for sensor tasks. Shipping full Isaac Sim with
+Omniverse Kit (NVIDIA’s runtime), or hosting it for outside users, requires a paid
+enterprise licence. Isaac Lab 3.0 ([released October
+2026](<https://github.com/isaac-sim/IsaacLab/releases/tag/v3.0.0>)) runs most workflows
+without Isaac Sim (“kit-less”). For physics, Isaac Lab offers
+[PhysX or Newton](<https://docs.nvidia.com/isaaclab/3.0/isaac-lab/ecosystem>). Newton
+includes MJWarp, a GPU version of MuJoCo, and solvers for deformable materials. Warp is
+a programming library, not a third physics engine.
 
 ## Recommended stack
 
@@ -23,17 +37,48 @@ Ruled out: AGX Dynamics, Vortex Studio and Gazebo (reasons under Main takeaways)
 
 ## Main takeaways
 
-Keep our simulator portable and backend-agnostic as far as practical. Our simulator should provide standardisation, definitions, and assets that are relevant for construction like site and equipment models, repeatable tasks such as lifting a panel or digging a trench, and common measures such as clearance, excavation depth and task completion. This is akin to [CARLA](<https://carla.org/2024/12/19/release-0.10.0/>) which adds towns, traffic and driving scenarios to Unreal and its Chaos vehicle physics; its benchmark [multiplies route completion by a penalty for collisions and other infractions](<https://leaderboard.carla.org/evaluation_v2_0/>).
+Keep our simulator portable and backend-agnostic as far as practical. Our simulator
+should provide standardisation, definitions, and assets that are relevant for
+construction like site and equipment models, repeatable tasks such as lifting a panel or
+digging a trench, and common measures such as clearance, excavation depth and task
+completion. This is akin to [CARLA](<https://carla.org/2024/12/19/release-0.10.0/>)
+which adds towns, traffic and driving scenarios to Unreal and its Chaos vehicle physics;
+its benchmark
+[multiplies route completion by a penalty for collisions and other infractions](<https://leaderboard.carla.org/evaluation_v2_0/>).
 
-Why I considered AGX: its [wire tools](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/agxwire__simulating_wires.html>) handle winches, pulleys and ropes rubbing on guides. It also offers [wind loading on wires](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/hydro__and_aerodynamics.html>) and [excavation tools](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/agxTerrain.html>).
+Why I considered AGX: its
+[wire tools](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/agxwire__simulating_wires.html>)
+handle winches, pulleys and ropes rubbing on guides. It also offers
+[wind loading on wires](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/hydro__and_aerodynamics.html>)
+and
+[excavation tools](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/agxTerrain.html>).
 
-Why I ruled out AGX: it requires a [paid licence](<https://www.algoryx.se/buy/>). It supports [training a controller](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/reinforcement_learning.html>), but its [published terms (§3.2)](<https://us.download.algoryx.se/AGXUnreal/>) prohibit using the software or its outputs to train, calibrate or validate a model that imitates its physics solver. That would also stop us using AGX results to calibrate or check our own models.
+Why I ruled out AGX: it requires a [paid licence](<https://www.algoryx.se/buy/>). It
+supports
+[training a controller](<https://www.algoryx.se/documentation/complete/agx/html/doc/UserManual/source/reinforcement_learning.html>), but its [published terms (§3.2)](<https://us.download.algoryx.se/AGXUnreal/>) prohibit
+using the software or its outputs to train, calibrate or validate a model that imitates
+its physics solver. That would also stop us using AGX results to calibrate or check our
+own models.
 
-Also ruled out: [Vortex Studio](<https://vortexstudio.atlassian.net/wiki/spaces/VSD225/pages/3250290880>) has rich ready-made cranes, excavators and soil, but it is proprietary and [stopped offering academic licences in 2023](<https://vortexstudio.atlassian.net/wiki/spaces/VSD231/pages/3287835376>). [Gazebo Jetty](<https://gazebosim.org/docs/all/release_notes/>) is open source and ROS-native, but its physics engines run on the CPU, so it does not offer GPU-parallel training.
+Also ruled out:
+[Vortex Studio](<https://vortexstudio.atlassian.net/wiki/spaces/VSD225/pages/3250290880>)
+has rich ready-made cranes, excavators and soil, but it is proprietary and
+[stopped offering academic licences in 2023](<https://vortexstudio.atlassian.net/wiki/spaces/VSD231/pages/3287835376>). [Gazebo Jetty](<https://gazebosim.org/docs/all/release_notes/>) is open source and
+ROS-native, but its physics engines run on the CPU, so it does not offer GPU-parallel
+training.
 
-Where the alternatives are stronger: native MuJoCo is the lightest choice for rigid-body experiments. Chrono has the most specialised tools in this shortlist for soil, water and structural response. Unreal offers [detailed site scenery](<https://dev.epicgames.com/documentation/unreal-engine/free-epic-games-content-for-unreal-engine?lang=en-US>) and its own [collision physics](<https://dev.epicgames.com/documentation/en-us/unreal-engine/physics-in-unreal-engine>).
+Where the alternatives are stronger: native MuJoCo is the lightest choice for rigid-body
+experiments. Chrono has the most specialised tools in this shortlist for soil, water and
+structural response. Unreal offers
+[detailed site scenery](<https://dev.epicgames.com/documentation/unreal-engine/free-epic-games-content-for-unreal-engine?lang=en-US>)
+and its own
+[collision physics](<https://dev.epicgames.com/documentation/en-us/unreal-engine/physics-in-unreal-engine>).
 
-I see Blender as a later companion: prepare site models, offline renders, inspect IFC building files with [Bonsai](<https://docs.bonsaibim.org/>), and make [reference images](<https://docs.blender.org/manual/en/5.0/render/introduction.html>) or [labelled datasets](<https://github.com/DLR-RM/BlenderProc>) without adding Blender to the training loop.
+I see Blender as a later companion: prepare site models, offline renders, inspect IFC
+building files with [Bonsai](<https://docs.bonsaibim.org/>), and make
+[reference images](<https://docs.blender.org/manual/en/5.0/render/introduction.html>) or
+[labelled datasets](<https://github.com/DLR-RM/BlenderProc>) without adding Blender to
+the training loop.
 
 | Criterion and recommendation | Isaac Lab and optional RTX | MuJoCo alone or with Unreal | Project Chrono |
 | --- | --- | --- | --- |
@@ -49,11 +94,16 @@ I see Blender as a later companion: prepare site models, offline renders, inspec
 | Outdoor wind and shelter<br>Best long-term: No ready-made winner here. | Same basic wind drag as MuJoCo: Newton exposes [uniform wind, air density and viscosity](<https://newton-physics.github.io/newton/1.6.1/api/_generated/newton.solvers.SolverMuJoCo.html>). MJWarp also supports finer shape-based lift and drag, but Newton’s [importer does not transfer those settings](<https://github.com/newton-physics/newton/blob/v1.6.1/newton/_src/solvers/mujoco/solver_mujoco.py#L6370-L6542>); they need extra integration. Neither predicts building shelter or gusts; supply a site wind model. | [Built-in aerodynamics](<https://mujoco.readthedocs.io/en/4.0.0/computation/fluid.html>) estimates forces from air moving past each body. The standard wind is uniform across the scene. The engine does not calculate the wake behind a building. | Can apply externally calculated wind loads. Its [fluid–structure interface](<https://api.projectchrono.org/10.0.0/manual_fsi.html>) is a specialist option if a moving structure must also change the airflow; an appropriate airflow solver and site model still need to be supplied. |
 | Soil and excavation<br>Best: Chrono for forces between ground and vehicles. Isaac MPM is the training candidate once checked against Chrono. | Newton’s implicit Material Point Method (MPM) solver, [SolverImplicitMPM](<https://isaac-sim.github.io/IsaacLab/v3.0.0/source/concepts/using_mpm.html>), models granular and deformable material. Clay needs suitable cohesion and flow parameters. It is separate from MJWarp. MPM and the coupling that makes soil push back on a bucket are experimental. | Weakest ready-made option here for excavation. Native MuJoCo can represent simplified terrain and rigid particles, but lacks the dedicated soil workflows of Chrono or Newton MPM. A realistic soil-and-bucket model would need substantial additional development and validation. | [Deformable terrain models](<https://api.projectchrono.org/10.0.0/vehicle_terrain.html>) suit wheels or tracks. Choose the model for the question: wheel sinkage and a bucket moving soil need different tests. For blades and buckets, its developers suggest [CRM terrain](<https://arxiv.org/abs/2507.05643>), which needs an NVIDIA GPU. |
 
-Version scope: Isaac Lab 3.0 uses Newton 1.6.1, which [pins MuJoCo and MJWarp to 3.12.x](<https://github.com/newton-physics/newton/blob/v1.6.1/pyproject.toml>). Features of native MuJoCo 4 below are therefore not automatically included. Model conversion and solver settings also affect equivalence. MuJoCo 4.0 (November 2026) also [removed the composite element and cable plugin](<https://mujoco.readthedocs.io/en/4.0.0/changelog.html>), so shared models should avoid them.
+Version scope: Isaac Lab 3.0 uses Newton 1.6.1, which
+[pins MuJoCo and MJWarp to 3.12.x](<https://github.com/newton-physics/newton/blob/v1.6.1/pyproject.toml>). Features of native MuJoCo 4 below are therefore not automatically included. Model
+conversion and solver settings also affect equivalence. MuJoCo 4.0 (November 2026) also
+[removed the composite element and cable plugin](<https://mujoco.readthedocs.io/en/4.0.0/changelog.html>), so shared models should avoid them.
 
 ## Building materials and site assets
 
-An IFC file (Industry Foundation Classes) can tell us what a building part is and where it belongs. Whether a robot can touch it, deform it or break it depends on the collision shape and material model that the physics engine actually uses.
+An IFC file (Industry Foundation Classes) can tell us what a building part is and where
+it belongs. Whether a robot can touch it, deform it or break it depends on the collision
+shape and material model that the physics engine actually uses.
 
 | Criterion and recommendation | Isaac Lab and optional RTX | MuJoCo alone or with Unreal | Project Chrono |
 | --- | --- | --- | --- |
@@ -63,11 +113,23 @@ An IFC file (Industry Foundation Classes) can tell us what a building part is an
 | Building information modelling (BIM)<br>Best direct IFC import: Unreal. Isaac can retain part data as well. | With metadata enabled, the [Omniverse IFC converter](<https://docs.omniverse.nvidia.com/kit/docs/omni.kit.converter.hoops_core/latest/CHANGELOG.html>) writes part data and building relationships into USD scene files. A [Revit exporter](<https://docs.omniverse.nvidia.com/connect/latest/revit.html>) also carries BIM fields. | In [MuJoCo alone](<https://mujoco.readthedocs.io/en/4.0.0/modeling.html>), convert geometry and keep a part-ID map. With Unreal, [Datasmith](<https://dev.epicgames.com/documentation/en-us/unreal-engine/importing-ifc-files-into-unreal-engine-using-datasmith>) keeps parts, storeys and properties. Values become [text](<https://dev.epicgames.com/documentation/en-us/unreal-engine/using-datasmith-metadata-in-unreal-engine>); property-set names are lost. | The [STEP route](<https://api.projectchrono.org/tutorial_pychrono_demo_cascade_step.html>) imports engineering geometry. Keep IFC identifiers and property sets separately and link them to the simulation parts. |
 | Survey scans and collision geometry<br>Best for viewing scans: Unreal. None guarantees contact-ready parts. | Use the scan for appearance, including the lighting it captured. Choose and inspect [collision shapes](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/physics/simulation_fundamentals.html>): a simple outer hull can close a guide slot that looks open in the image. On the MJWarp path, [MuJoCo’s compiler turns non-convex meshes into convex hulls](<https://newton-physics.github.io/newton/1.6.1/solvers/mujoco.html>). | Unreal imports [LAS, LAZ or E57 scans](<https://dev.epicgames.com/documentation/en-us/unreal-engine/lidar-point-cloud-plugin-overview-in-unreal-engine>); creating [collision geometry](<https://dev.epicgames.com/documentation/en-us/unreal-engine/lidar-point-cloud-plugin-quick-start-guide-in-unreal-engine>) is a separate step. Native MuJoCo needs its own checked shapes. | Chrono can build [rigid terrain from surveyed ground heights](<https://api.projectchrono.org/classchrono_1_1vehicle_1_1_rigid_terrain.html>). Walls, overhangs and moving parts need separate geometry. Check dimensions against the survey before using it for contact. |
 
-Concrete damage: for example, OpenSees [ASDConcrete3D](<https://opensees.github.io/OpenSeesDocumentation/user/manual/material/ndMaterials/ASDConcrete3D.html>) models cracking-related damage and permanent deformation. Fit stiffness, tensile and compressive response, and fracture energy to measurements. For masonry, also model [mortar-joint opening and slip](<https://www.oofem.org/resources/doc/matlibmanual/html/pages/plasticity-based-material-models.html>). This is a possible specialist integration, not an existing Isaac feature.
+Concrete damage: for example, OpenSees
+[ASDConcrete3D](<https://opensees.github.io/OpenSeesDocumentation/user/manual/material/ndMaterials/ASDConcrete3D.html>)
+models cracking-related damage and permanent deformation. Fit stiffness, tensile and
+compressive response, and fracture energy to measurements. For masonry, also model
+[mortar-joint opening and slip](<https://www.oofem.org/resources/doc/matlibmanual/html/pages/plasticity-based-material-models.html>). This is a possible specialist integration, not an existing Isaac feature.
 
 ## Site images and robot training
 
-Reality capture uses photos, video or laser scans to model real equipment and sites. Point clouds record measured points; meshes connect them into surfaces. [Gaussian splats](<https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/>) show an object or site from new viewpoints, even when made from synthetic images. Appearance alone cannot establish collision shapes or friction.  Splats are useful for camera-based navigation and training, but [captured lighting limits relighting](<https://docs.omniverse.nvidia.com/materials-and-rendering/latest/particle-fields.html>). Depth and labels depend on the workflow: Isaac’s [NuRec replay in MobilityGen](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/synthetic_data_generation/tutorial_replicator_mobility_gen.html#use-nurec-assets-in-mobilitygen>) currently outputs RGB only.
+Reality capture uses photos, video or laser scans to model real equipment and sites.
+Point clouds record measured points; meshes connect them into surfaces.
+[Gaussian splats](<https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/>) show an
+object or site from new viewpoints, even when made from synthetic images. Appearance
+alone cannot establish collision shapes or friction. Splats are useful for camera-based
+navigation and training, but
+[captured lighting limits relighting](<https://docs.omniverse.nvidia.com/materials-and-rendering/latest/particle-fields.html>). Depth and labels depend on the workflow: Isaac’s
+[NuRec replay in MobilityGen](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/synthetic_data_generation/tutorial_replicator_mobility_gen.html#use-nurec-assets-in-mobilitygen>)
+currently outputs RGB only.
 
 | Criterion and recommendation | Isaac Lab and optional RTX | MuJoCo alone or with Unreal | Project Chrono |
 | --- | --- | --- | --- |
@@ -81,7 +143,9 @@ Reality capture uses photos, video or laser scans to model real equipment and si
 
 ## Sharing and maintaining our simulator
 
-Our public release can contain our own code, site and robot models, and instructions. Whether anyone pays for an engine depends on which software they use, what they do with it, and what we give them.
+Our public release can contain our own code, site and robot models, and instructions.
+Whether anyone pays for an engine depends on which software they use, what they do with
+it, and what we give them.
 
 | Criterion and recommendation | Isaac Lab and optional RTX | MuJoCo alone or with Unreal | Project Chrono |
 | --- | --- | --- | --- |
@@ -91,8 +155,30 @@ Our public release can contain our own code, site and robot models, and instruct
 
 ## Who pays in practice
 
-Running Isaac ourselves: no enterprise licence is needed for research and development. [Omniverse Kit](<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html>) is the NVIDIA software that runs the full Isaac Sim application; the [kit-less setup](<https://isaac-sim.github.io/IsaacLab/v3.0.0/source/concepts/renderers.html>) does not use it.
+Running Isaac ourselves: no enterprise licence is needed for research and development.
+[Omniverse Kit](<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html>)
+is the NVIDIA software that runs the full Isaac Sim application; the
+[kit-less setup](<https://isaac-sim.github.io/IsaacLab/v3.0.0/source/concepts/renderers.html>)
+does not use it.
 
-Sharing with other labs, including sensor tasks: publish our code, models and install instructions; each lab installs Isaac Sim from NVIDIA and runs it itself, which needs no enterprise licence (see [NVIDIA’s examples](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html>)). A Dockerfile that each lab builds from NVIDIA’s Isaac Sim image follows the same pattern as [Isaac Lab’s own container](<https://docs.nvidia.com/isaaclab/3.0/isaac-lab/installation>). Giving outsiders a ready-built image that contains Isaac Sim with Kit, or hosting it for them, needs NVIDIA AI Enterprise; the FAQ makes no exception for free access. A kit-less image contains no Kit, but check OVRTX’s licence before including it.
+Sharing with other labs, including sensor tasks: publish our code, models and install
+instructions; each lab installs Isaac Sim from NVIDIA and runs it itself, which needs no
+enterprise licence (see
+[NVIDIA’s examples](<https://docs.isaacsim.omniverse.nvidia.com/6.2.0/common/license-faq.html>)
+). A Dockerfile that each lab builds from NVIDIA’s Isaac Sim image follows the same
+pattern as
+[Isaac Lab’s own container](<https://docs.nvidia.com/isaaclab/3.0/isaac-lab/installation>). Giving outsiders a ready-built image that contains Isaac Sim with Kit, or hosting it
+for them, needs NVIDIA AI Enterprise; the FAQ makes no exception for free access. A
+kit-less image contains no Kit, but check OVRTX’s licence before including it.
 
-If we add Unreal later: no developer seat fee for education, [solely non-commercial use](<https://www.unrealengine.com/eula/unreal>), or organisations whose group had under US$1 million revenue in the past 12 months ([Epic counts advances and funds raised](<https://www.unrealengine.com/eula/unreal>)); otherwise [US$1,850 per developer per year](<https://www.unrealengine.com/license>). People who only run a packaged app need no seat, but university work for a commercial client is not automatically exempt. Products sold generally pay royalties instead: [5% of revenue above US$1 million over the product’s lifetime](<https://www.unrealengine.com/license>), so a free simulator owes none. Epic’s [EULA update of 29 October 2026](<https://www.unrealengine.com/ue-devs-can-now-choose-to-train-ai-models-on-their-projects>) allows AI training on our projects once we accept it; Fab items tagged NoAI stay restricted.
+If we add Unreal later: no developer seat fee for education,
+[solely non-commercial use](<https://www.unrealengine.com/eula/unreal>), or
+organisations whose group had under US$1 million revenue in the past 12 months ([Epic
+counts advances and funds raised](<https://www.unrealengine.com/eula/unreal>));
+otherwise [US$1,850 per developer per year](<https://www.unrealengine.com/license>).
+People who only run a packaged app need no seat, but university work for a commercial
+client is not automatically exempt. Products sold generally pay royalties instead:
+[5% of revenue above US$1 million over the product’s lifetime](<https://www.unrealengine.com/license>), so a free simulator owes none. Epic’s
+[EULA update of 29 October 2026](<https://www.unrealengine.com/ue-devs-can-now-choose-to-train-ai-models-on-their-projects>)
+allows AI training on our projects once we accept it; Fab items tagged NoAI stay
+restricted.

@@ -6,7 +6,8 @@ the [project scope](../project-scope.md) defines the problem it should serve.
 
 ## Register
 
-The platform review concluded on 19/11/2026. The physics ownership and Python proposals remain open.
+The platform review concluded on 19/11/2026. The physics ownership and Python proposals
+remain open.
 
 | Record | Proposal | Status |
 |---|---|---|

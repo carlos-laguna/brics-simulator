@@ -1,6 +1,7 @@
 # 001: Start with MuJoCo and bounded backend portability
 
-- **Status:** Rejected on 19/11/2026. See [ADR 005](005-isaac-lab-and-newton.md) for the decision and supporting evidence.
+- **Status:** Rejected on 19/11/2026. See [ADR 005](005-isaac-lab-and-newton.md) for the
+  decision and supporting evidence.
 - **Date:** 05-11-2026
 
 ## Context
@@ -40,7 +41,8 @@ licensing for the intended research and distribution.
 
 ## Consequences and review
 
-This gives a narrow, testable path to supported simulation capabilities. MuJoCo's approximations
+This gives a narrow, testable path to supported simulation capabilities. MuJoCo's
+approximations
 still limit the claims BRICS can make. Four fixed suspension lines do not imply
 validated winch, reeving, wire-contact or torsion models.
 

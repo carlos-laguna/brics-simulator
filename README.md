@@ -8,7 +8,8 @@ reusable simulation of suspended-load handling and placement.
 BRICS was initiated by Carlos Laguna Sanchez during his MPhil research at the University
 of Cambridge.
 
-> **Status:** The BRICS Python package is importable. The first simulation task is planned for Isaac Lab 3.0 with Newton physics.
+> **Status:** The BRICS Python package is importable. The first simulation task is
+> planned for Isaac Lab 3.0 with Newton physics.
 
 ## Vision
 
@@ -36,7 +37,8 @@ deferred capabilities and the boundary between platform and research work.
 
 ## Intended architecture
 
-- **Kit-less Isaac Lab with Newton first:** develop a small, verified physics example before a complete
+- **Kit-less Isaac Lab with Newton first:** develop a small, verified physics example
+  before a complete
   suspended-load task.
 - **Bounded backend independence:** keep experiment, command, observation and
   evaluation meanings separate from native engine objects. Preserve explicit
@@ -94,7 +96,8 @@ uv run --no-sync ruff format --check .
 uv run --no-sync mkdocs build --strict
 ```
 
-For the same package import check in Docker, run `docker compose run --build --rm brics-dev`.
+For the same package import check in Docker, run
+`docker compose run --build --rm brics-dev`.
 The simulator integration is planned. The first GPU milestone will establish
 a tested kit-less environment and record the compatible driver, Python,
 Isaac Lab and Newton versions.
@@ -109,7 +112,8 @@ Isaac Lab and Newton versions.
 - [Architecture decision records](docs/adr/README.md)
 - [References](docs/references.md)
 
-The next task is a headless free-fall experiment with analytic checks and an installed CLI.
+The next task is a headless free-fall experiment with analytic checks and an installed
+CLI.
 
 ## Contributing
 
@@ -125,7 +129,8 @@ proposed approach and expected behaviour.
 
 Original BRICS code and documentation use [Apache License 2.0](LICENSE)
 (`Apache-2.0`). Third-party software and assets retain their respective licences.
-Users install Isaac software separately. See the [distribution guidance](docs/adr/platform-decision-brief.md#who-pays-in-practice).
+Users install Isaac software separately. See the
+[distribution guidance](docs/adr/platform-decision-brief.md#who-pays-in-practice).
 BRICS's licence does not grant rights to that third-party material.
 The documentation site's [licence bundle](docs/assets/licenses.txt) accompanies
 its generated assets.

@@ -32,7 +32,9 @@ and second engine are not prerequisites for the first supported examples.
 
 ## Packaging and deployment foundations
 
-Keep the contributor environment small. Pin the working Isaac Lab and Newton combination when the first GPU reference case passes. Update the project metadata, lockfile, Docker, CI and
+Keep the contributor environment small. Pin the working Isaac Lab and Newton combination
+when the first GPU reference case passes. Update the project metadata, lockfile, Docker,
+CI and
 setup documentation together. Keep development and documentation tools in
 their respective groups, and keep top-level package imports lightweight.
 
