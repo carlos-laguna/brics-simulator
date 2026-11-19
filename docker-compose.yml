@@ -1,7 +1,6 @@
 services:
-  physics-sim-mujoco:
+  brics-dev:
     build:
       context: .
-      dockerfile: docker/sim/mujoco/Dockerfile
-    image: brics-mujoco:dev
-    
+      dockerfile: docker/Dockerfile
+    image: brics:dev
