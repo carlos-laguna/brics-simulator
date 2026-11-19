@@ -71,8 +71,7 @@ The reference development environment uses Python 3.12. Keep
 `.python-version`, Docker configuration and CI consistent with the
 interpreter versions the project tests.
 
-The `dev` group contains development tools, `sim` contains simulation
-dependencies, and `docs` contains documentation tools.
+The `dev` group contains development tools and `docs` contains documentation tools. GPU simulation will have its own tested environment.
 
 Keep the [setup instructions](README.md#getting-started) up to date when
 changing these groups or the development workflow.
@@ -82,8 +81,8 @@ run its import check:
 
 ```bash
 docker compose config --quiet
-docker compose build physics-sim-mujoco
-docker compose run --rm -T physics-sim-mujoco
+docker compose build brics-dev
+docker compose run --rm -T brics-dev
 ```
 
 A successful build alone does not verify the image's runtime command.
