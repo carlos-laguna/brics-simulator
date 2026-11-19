@@ -42,7 +42,7 @@ rig described in SwingRL is not automatically a calibrated digital twin.
 | Local headless execution and run records | Distributed services, cluster scheduling and exact checkpoints |
 
 Mixed-engine dynamics within one interacting world are outside the initial
-architecture. Unreal rendering and ROS integration remain optional extensions.
+architecture. Kit-less Isaac Lab is the first target. Add full Isaac Sim when a task needs RTX LiDAR or ROS 2.
 Excavation, deformable materials and broader construction workflows remain
 longer-term possibilities; their models need separate evidence of validity.
 

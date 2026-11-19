@@ -90,6 +90,8 @@ a benchmark protocol is separate from selecting a study that uses it.
 
 ## Automated checks and experiment records
 
+For the first Newton runs, record the Isaac Lab version, Newton solver, GPU and driver. Check free fall against the analytic trajectory before testing sling tension and swing. Treat results from native MuJoCo as comparison data. Repeat each reference case on the selected solver.
+
 Pure unit tests cover configuration, transformations, metric logic, and input validation without a renderer or GPU. Simulator integration tests exercise actual stepping and physical reference cases. Renderer and ROS integration checks remain separate and document their environments. Exploratory scripts are acceptable; supported behaviour needs a contract and appropriate checks.
 
 Every recorded experiment should identify code and dependency versions, model/assets and their provenance, physical parameters, backend/solver settings, physics/control/sensor timing, randomisation, policy checkpoint, observation/action definitions, and metric versions. Include hardware and rendering settings when they affect results or performance.

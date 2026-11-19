@@ -3,8 +3,7 @@
 > **Status: proposed design.** This document describes the intended boundaries of
 > BRICS. It does not imply that these components, interfaces or integrations are
 > implemented. The first planned simulation example is small, headless and based
-> on MuJoCo; the current setup establishes the development environment.
-> Architectural decisions remain subject to team review through the ADRs.
+> on Isaac Lab with Newton. [ADR 005](adr/005-isaac-lab-and-newton.md) records the platform choice.
 
 ## Design objective
 
@@ -18,9 +17,7 @@ independence is useful where it protects those experiments. It does not mean tha
 every physical model can run unchanged in every simulator, or that equivalent
 parameter names produce equivalent dynamics.
 
-Python is the proposed application language. MuJoCo provides the first dynamics
-implementation. Unreal Engine 5 is a proposed optional renderer, and ROS 2 is a
-possible optional integration. Neither is required for the first physics task.
+Python is the proposed application language. Isaac Lab runs the task and Newton integrates its dynamics.
 
 ## Component boundaries
 
@@ -223,27 +220,13 @@ The first does not establish the second, and neither establishes complete
 checkpoint support. Checkpoints are deferred until a concrete research need
 justifies their backend-specific requirements.
 
-## Unreal Engine integration
+## Cameras and rendering
 
-Begin with pose replay to check axes, units, object identities, camera calibration
-and frame timestamps. Add synchronous camera observations only when the research
-requires them. Keep collision geometry and visual geometry separate, with a
-documented transformation between them.
-
-Unreal receives authoritative transforms; it does not generate a second contact
-response. Interpolation for a demonstration video must not silently become the
-state used for research observations. Wire appearance and visibility settings
-must be documented when generating perception data.
-
-Python supports Unreal editor automation, but its standard Python plugin is
-[not a gameplay runtime](https://dev.epicgames.com/documentation/en-us/unreal-engine/scripting-the-unreal-editor-using-python).
-A runtime bridge will therefore need an appropriate Unreal implementation, such
-as a small C++ plugin with Blueprint-facing configuration. This bridge is planned,
-not an existing BRICS feature.
+Start with kit-less Newton Warp cameras. A task that needs RTX images can evaluate OVRTX under its separate terms. Record camera calibration, axes, frame timestamps and the relation between collision and visual geometry. Check observation age before closing a control loop around images.
 
 ## ROS 2 and other integrations
 
-The core experiment should run through direct Python calls. A future ROS 2 bridge
+The core experiment should run through direct Python calls. The optional Isaac Sim ROS 2 bridge
 can translate commands and observations, publish transforms and simulated time,
 and expose reset/episode information. ROS callbacks enqueue requests; they never
 advance physics themselves.
