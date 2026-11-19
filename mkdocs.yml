@@ -19,5 +19,7 @@ nav:
       - Physics authority: adr/002-single-physics-authority.md
       - Rendering and middleware: adr/003-optional-rendering-and-middleware.md
       - Python application layer: adr/004-python-application-layer.md
+      - Isaac Lab and Newton: adr/005-isaac-lab-and-newton.md
+      - Platform decision brief: adr/platform-decision-brief.md
       - Template: adr/template.md
   - References: references.md
