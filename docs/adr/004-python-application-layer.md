@@ -42,4 +42,4 @@ against supported dependencies, contributors and CI. The platform does not
 require every optional integration to be implemented in Python.
 
 See the [roadmap](../roadmap.md) and the
-[MuJoCo binding reference](../references.md#mujoco).
+[platform decision](005-isaac-lab-and-newton.md).

@@ -12,6 +12,15 @@ Original BRICS documentation: Apache-2.0
 Source: https://www.apache.org/licenses/LICENSE-2.0.txt
 
 
+BRICS licensing scope
+
+Original BRICS code and documentation are licensed under Apache-2.0. Third-party models,
+assets and software retain their own terms. Distribute BRICS code, cleared assets and
+installation instructions. Users obtain Isaac software from NVIDIA. Review the relevant
+NVIDIA enterprise terms before distributing a Kit-based image or hosting Isaac Sim for
+external users. Standalone OVRTX has separate terms.
+
+
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/

@@ -6,14 +6,18 @@ the [project scope](../project-scope.md) defines the problem it should serve.
 
 ## Register
 
-All four entries below are **Proposed**, pending discussion with the team.
+The platform review concluded on 19/11/2026. The physics ownership and Python proposals
+remain open.
 
 | Record | Proposal | Status |
 |---|---|---|
-| [001](001-mujoco-and-bounded-backend-portability.md) | Start with MuJoCo and bounded backend portability | Proposed |
+| [001](001-mujoco-and-bounded-backend-portability.md) | Start with MuJoCo and bounded backend portability | Rejected |
 | [002](002-single-physics-authority.md) | Give one backend ownership of coupled physics and one runner ownership of advancement | Proposed |
-| [003](003-optional-rendering-and-middleware.md) | Keep Unreal rendering and robotics middleware optional | Proposed |
+| [003](003-optional-rendering-and-middleware.md) | Keep Unreal rendering and robotics middleware optional | Rejected |
 | [004](004-python-application-layer.md) | Use Python for the application layer and native libraries for simulation | Proposed |
+| [005](005-isaac-lab-and-newton.md) | Isaac Lab with Newton and task-specific Isaac Sim sensors | Accepted |
+
+[Read the platform decision brief](platform-decision-brief.md).
 
 ## Lifecycle
 

@@ -7,12 +7,12 @@
 
 | Milestone | Deliverable | Completion evidence |
 |---|---|---|
-| Development environment | Importable package and CPU MuJoCo Docker workflow | Native/container import checks; current setup stage |
+| Development environment | Importable package and kit-less Isaac Lab GPU setup | Package import check, followed by a planned Newton GPU smoke test |
 | Free-fall reference example | Small Python API and installed CLI | Analytic checks, timestep convergence and clean package/container execution |
 | Suspended-load reference scene | Documented payload, suspension and commands | Equilibrium and swing reference cases; explicit units and frames |
 | Disturbance and contact cases | Prescribed wind, landing and fixture interaction | Correct forces/moments, contact records and numerical sensitivity studies |
 | Reusable placement scenario | Configurable placement task with observation and metric contracts | Documented assumptions, reset behaviour and successful/unsuccessful reference cases |
-| Optional integrations | Unreal observations or robotics middleware adapter | Demonstrated need and verified timing, transforms and reset behaviour |
+| Optional integrations | Isaac Sim RTX LiDAR or ROS 2 bridge | Demonstrated need and verified timing, transforms and reset behaviour |
 
 The first application guides priorities. New users and evidence can change
 their order. An image-dependent application may justify an early rendering
@@ -32,10 +32,9 @@ and second engine are not prerequisites for the first supported examples.
 
 ## Packaging and deployment foundations
 
-The current environment uses a contributor dependency group named `sim`.
-When installable simulation functionality is added, migrate its runtime
-dependencies to an optional installation extra and declare directly imported
-dependencies explicitly. Update the project metadata, lockfile, Docker, CI and
+Keep the contributor environment small. Pin the working Isaac Lab and Newton combination
+when the first GPU reference case passes. Update the project metadata, lockfile, Docker,
+CI and
 setup documentation together. Keep development and documentation tools in
 their respective groups, and keep top-level package imports lightweight.
 

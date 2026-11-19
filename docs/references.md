@@ -23,6 +23,11 @@ or inconsistent geometry, contact and timing details before claiming a faithful
 reproduction of a reference setup. Do not redistribute the manuscript or assets without
 establishing the applicable permissions.
 
+## Platform selection
+
+The [decision brief](adr/platform-decision-brief.md) links the Isaac Lab, Newton and
+Isaac Sim sources alongside the alternatives reviewed.
+
 ## MuJoCo
 
 - [Modeling](https://mujoco.readthedocs.io/en/stable/modeling.html): native MJCF,

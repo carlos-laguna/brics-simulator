@@ -91,7 +91,7 @@
 <g id="node6" class="node">
 <title>renderer</title>
 <path fill="#f5f4f9" stroke="#8b84a5" stroke-dasharray="5,2" d="M542.22,-167.92C542.22,-167.92 397.22,-167.92 397.22,-167.92 391.22,-167.92 385.22,-161.92 385.22,-155.92 385.22,-155.92 385.22,-128.56 385.22,-128.56 385.22,-122.56 391.22,-116.56 397.22,-116.56 397.22,-116.56 542.22,-116.56 542.22,-116.56 548.22,-116.56 554.22,-122.56 554.22,-128.56 554.22,-128.56 554.22,-155.92 554.22,-155.92 554.22,-161.92 548.22,-167.92 542.22,-167.92"/>
-<text xml:space="preserve" text-anchor="middle" x="469.72" y="-146.14" font-family="Arial" font-size="13.00" fill="#102d45">Optional Unreal renderer</text>
+<text xml:space="preserve" text-anchor="middle" x="469.72" y="-146.14" font-family="Arial" font-size="13.00" fill="#102d45">Optional camera renderer</text>
 <text xml:space="preserve" text-anchor="middle" x="469.72" y="-130.54" font-family="Arial" font-size="13.00" fill="#102d45">Visual state and sensors</text>
 </g>
 <!-- runner&#45;&gt;renderer -->

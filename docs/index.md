@@ -4,10 +4,8 @@ BRICS means **Building Robotics Intelligence & Construction Simulator**.
 It is an open-source construction robotics project, currently focused on
 simulation of suspended-load handling and placement.
 
-> **Implementation status:** The package and CPU MuJoCo development environment
-> are established. The architecture, reference scenarios, integrations and
-> evaluation workflows described here are planned. A free-fall reference example
-> is the next implementation task. These pages do not announce a completed simulator.
+> **Implementation status:** BRICS has an importable Python package. The first planned
+> task is a headless free-fall check in Isaac Lab with Newton.
 
 ## Read in this order
 
@@ -17,7 +15,7 @@ simulation of suspended-load handling and placement.
 | [Architecture](architecture.md) | Who owns physics, time, observations and integration boundaries? |
 | [Validation and limitations](validation.md) | What evidence supports a result, and what can the simulator not establish? |
 | [Platform roadmap](roadmap.md) | What should we build next, and what must wait? |
-| [Proposed ADRs](adr/README.md) | Which choices require team discussion, and why are they proposed? |
+| [Architecture decisions](adr/README.md) | Which choices have been made and which are still open? |
 | [References](references.md) | Which external documents and research informed this plan? |
 
 The repository README owns installation instructions. CONTRIBUTING.md owns the

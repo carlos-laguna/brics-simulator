@@ -7,7 +7,7 @@ digraph BRICS {
   runner [label="Episode runner\nSole authority to request steps", fillcolor="#d4eee8", color="#147564", penwidth=1.6];
   physics [label="One physics backend\nOwns all coupled dynamics", fillcolor="#d4eee8", color="#147564", penwidth=1.6];
   sensors [label="Observation pipeline\nSampling, delay and delivery"];
-  renderer [label="Optional Unreal renderer\nVisual state and sensors", style="rounded,filled,dashed", fillcolor="#f5f4f9", color="#8b84a5"];
+  renderer [label="Optional camera renderer\nVisual state and sensors", style="rounded,filled,dashed", fillcolor="#f5f4f9", color="#8b84a5"];
   evaluation [label="Evaluation and recording\nPrivileged truth and run records"];
   scenario -> runner;
   policy -> runner [label="Commands"];

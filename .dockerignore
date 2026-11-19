@@ -27,7 +27,7 @@ build/
 dist/
 **/*.egg-info/
 
-# Documentation is not needed in the physics development image
+# Documentation is not needed in the package development image
 docs/
 site/
 

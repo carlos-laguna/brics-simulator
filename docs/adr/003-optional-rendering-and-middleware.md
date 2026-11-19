@@ -1,6 +1,7 @@
 # 003: Keep rendering and robotics middleware optional
 
-- **Status:** Proposed
+- **Status:** Rejected on 19/11/2026. See [ADR 005](005-isaac-lab-and-newton.md) for the
+  decision and supporting evidence.
 - **Date:** 11-05-2026
 
 ## Context

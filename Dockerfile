@@ -13,11 +13,11 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Cache dependency installation separately from changes to BRICS source files.
 COPY pyproject.toml uv.lock ./
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --no-install-project --group dev --group sim
+    uv sync --locked --no-install-project --group dev
 
 COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --group dev --group sim
+    uv sync --locked --group dev
 
 # This is a one-off environment check, not a simulation server.
-CMD ["python", "-c", "import brics; import mujoco; print(brics.__file__); print(mujoco.__version__)"]
+CMD ["python", "-c", "import brics; print(brics.__file__)"]
