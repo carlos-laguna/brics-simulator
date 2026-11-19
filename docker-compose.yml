@@ -1,6 +1,4 @@
 services:
   brics-dev:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
+    build: .
     image: brics:dev
