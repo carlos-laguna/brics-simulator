@@ -1,6 +1,6 @@
 [project]
 name = "brics"
-description = "An open-source platform for construction robotics simulation, with physics-based environments and BIM integration."
+description = "A construction robotics simulation project focused on suspended-load handling and placement."
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
@@ -8,7 +8,7 @@ version = "0.1.0"
 authors = [
     { name = "Carlos Laguna Sanchez", email = "c.laguna.sanchez@gmail.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.12, <3.13"
 dependencies = []
 
 [build-system]
